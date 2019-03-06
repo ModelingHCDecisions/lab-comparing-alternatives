@@ -41,7 +41,7 @@ def draw_histograms(multi_cohort_no_drug, multi_cohort_with_drug):
         title='Histogram of average patient survival time',
         x_label='Survival time',
         y_label='Counts',
-        bin_width=1,
+        bin_width=0.5,
         legend=['No Drug', 'With Drug'],
         transparency=0.5,
         x_range=[6, 20]
