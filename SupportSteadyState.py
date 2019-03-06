@@ -1,4 +1,3 @@
-import SimPy.FormatFunctions as Format
 import SimPy.SamplePathClasses as PathCls
 import SimPy.FigureSupport as Figs
 import SimPy.StatisticalClasses as Stat
@@ -13,16 +12,16 @@ def print_outcomes(simulated_cohort, strategy_name):
 
     # create a summary statistics
     survival_time_stat = Stat.SummaryStat(name='Survival time statistics',
-                                          data=simulated_cohort.cohortOutcomes.survivalTimes)
+                                          data=simulated_cohort.cohortOutcomes.meanSurvivalTimes)
 
-    # get mean and t-based confidence interval
+    # get mean and confidence confidence interval
     mean = survival_time_stat.get_mean()
     conf_int = survival_time_stat.get_t_CI(alpha=D.ALPHA)
 
     # print survival time statistics
     print(strategy_name)
-    print("  Estimate of mean survival time (years) and {:.{prec}%} confidence interval:".format(1 - D.ALPHA, prec=0),
-          mean, conf_int)
+    print("  Estimate of mean survival time (years) and {:.{prec}%} confidence interval:"
+          .format(1 - D.ALPHA, prec=0), mean, conf_int)
 
 
 def draw_survival_curves_and_histograms(cohort_no_drug, cohort_with_drug):
@@ -81,7 +80,5 @@ def print_comparative_outcomes(cohort_no_drug, cohort_with_drug):
     mean = increase_stat.get_mean()
     conf_int = increase_stat.get_t_CI(alpha=D.ALPHA)
 
-    print("Average increase in survival time (years) and {:.{prec}%} confidence interval:".format(1 - D.ALPHA, prec=0),
-          mean, conf_int)
-
-
+    print("Average increase in survival time (years) and {:.{prec}%} confidence interval:"
+          .format(1 - D.ALPHA, prec=0), mean, conf_int)
