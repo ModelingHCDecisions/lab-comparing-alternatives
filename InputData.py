@@ -9,5 +9,5 @@ ALPHA = 0.05        # significance level
 SIM_POP_SIZE = 2000     # population size of the simulated cohort
 
 # settings for transient-state simulation
-REAL_POP_SIZE = 100     # size of the real cohort to make the projections for
+REAL_POP_SIZE = 100     # size of the real cohort for which we'd like to project its outcomes
 NUM_SIM_COHORTS = 1000  # number of simulated cohorts used for making projections

@@ -12,7 +12,7 @@ def print_outcomes(simulated_cohort, strategy_name):
 
     # create a summary statistics
     survival_time_stat = Stat.SummaryStat(name='Survival time statistics',
-                                          data=simulated_cohort.cohortOutcomes.meanSurvivalTimes)
+                                          data=simulated_cohort.cohortOutcomes.survivalTimes)
 
     # get mean and confidence confidence interval
     mean = survival_time_stat.get_mean()
