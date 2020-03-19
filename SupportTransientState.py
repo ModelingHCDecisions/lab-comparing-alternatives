@@ -1,4 +1,4 @@
-import SimPy.FigureSupport as Figs
+import SimPy.Plots.Histogram as Hist
 import SimPy.StatisticalClasses as Stat
 import InputData as D
 
@@ -36,13 +36,13 @@ def draw_histograms(multi_cohort_no_drug, multi_cohort_with_drug):
     ]
 
     # graph histograms
-    Figs.graph_histograms(
+    Hist.plot_histograms(
         data_sets=set_of_survival_times,
         title='Histogram of average patient survival time',
         x_label='Survival time',
         y_label='Counts',
         bin_width=0.5,
-        legend=['No Drug', 'With Drug'],
+        legends=['No Drug', 'With Drug'],
         transparency=0.5,
         x_range=[6, 20]
     )

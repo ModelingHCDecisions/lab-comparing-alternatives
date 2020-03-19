@@ -1,7 +1,8 @@
 
 MORTALITY_PROB = 0.1        # annual probability of mortality
 DRUG_EFFECT_RATIO = 0.75    # drug effectiveness:
-                            # ratio of the annual mortality probability when using the drug to when not using the drug.
+                            # ratio of the annual mortality probability
+#                           # when using the drug to when not using the drug.
 TIME_STEPS = 1000    # simulation length
 ALPHA = 0.05        # significance level
 
