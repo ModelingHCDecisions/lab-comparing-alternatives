@@ -1,5 +1,6 @@
-import SimPy.FigureSupport as Figs
-import SimPy.StatisticalClasses as Stat
+import SimPy.Plots.SamplePaths as Path
+import SimPy.Plots.Histogram as Hist
+import SimPy.Statistics as Stat
 import InputData as D
 
 
@@ -16,11 +17,28 @@ def print_outcomes(calibrated_model, strategy_name):
           calibrated_model.get_mean_survival_time_proj_interval(alpha=D.ALPHA))
 
 
-def draw_histograms(calibrated_model_no_drug, calibrated_model_with_drug):
+def draw_survival_curves_and_histograms(calibrated_model_no_drug, calibrated_model_with_drug):
     """ draws the histograms of average survival time
     :param calibrated_model_no_drug: calibrated model simulated when drug is not available
     :param calibrated_model_with_drug: calibrated model simulated when drug is available
     """
+
+    # get survival curves of both treatments
+    survival_curves = [
+        calibrated_model_no_drug.multiCohorts.multiCohortOutcomes.survivalCurves,
+        calibrated_model_with_drug.multiCohorts.multiCohortOutcomes.survivalCurves
+    ]
+
+    # graph survival curve
+    Path.plot_sets_of_sample_paths(
+        sets_of_sample_paths=survival_curves,
+        title='Survival curve',
+        x_label='Simulation time step',
+        y_label='Number of alive patients',
+        legends=['No Drug', 'With Drug'],
+        color_codes=['blue', 'orange'],
+        transparency=0.25
+    )
 
     # histograms of average survival times
     set_of_survival_times = [
@@ -29,13 +47,14 @@ def draw_histograms(calibrated_model_no_drug, calibrated_model_with_drug):
     ]
 
     # graph histograms
-    Figs.graph_histograms(
+    Hist.plot_histograms(
         data_sets=set_of_survival_times,
         title='Histogram of average patient survival time',
         x_label='Survival time',
         y_label='Counts',
         bin_width=0.5,
-        legend=['No Drug', 'With Drug'],
+        legends=['No Drug', 'With Drug'],
+        color_codes=['blue', 'orange'],
         transparency=0.5,
         x_range=[6, 20]
     )

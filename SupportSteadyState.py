@@ -1,6 +1,6 @@
-import SimPy.SamplePathClasses as PathCls
-import SimPy.FigureSupport as Figs
-import SimPy.StatisticalClasses as Stat
+import SimPy.Plots.SamplePaths as Path
+import SimPy.Plots.Histogram as Hist
+import SimPy.Statistics as Stat
 import InputData as D
 
 
@@ -37,12 +37,14 @@ def draw_survival_curves_and_histograms(cohort_no_drug, cohort_with_drug):
     ]
 
     # graph survival curve
-    PathCls.graph_sample_paths(
+    Path.plot_sample_paths(
         sample_paths=survival_curves,
         title='Survival curve',
         x_label='Simulation time step',
         y_label='Number of alive patients',
-        legends=['No Drug', 'With Drug']
+        legends=['No Drug', 'With Drug'],
+        color_codes=['blue', 'orange'],
+        transparency=0.5
     )
 
     # histograms of survival times
@@ -52,14 +54,15 @@ def draw_survival_curves_and_histograms(cohort_no_drug, cohort_with_drug):
     ]
 
     # graph histograms
-    Figs.graph_histograms(
+    Hist.plot_histograms(
         data_sets=set_of_survival_times,
         title='Histogram of patient survival time',
         x_label='Survival time',
         y_label='Counts',
-        bin_width=1,
-        legend=['No Drug', 'With Drug'],
-        transparency=0.6
+        bin_width=2,
+        legends=['No Drug', 'With Drug'],
+        color_codes=['blue', 'orange'],
+        transparency=0.5
     )
 
 

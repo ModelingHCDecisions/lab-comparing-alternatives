@@ -27,8 +27,8 @@ Support.print_outcomes(calibrated_model=calibratedModelWithDrug,
                        strategy_name='When drug is available:')
 
 # draw histograms
-Support.draw_histograms(calibrated_model_no_drug=calibratedModelNoDrug,
-                        calibrated_model_with_drug=calibratedModelWithDrug)
+Support.draw_survival_curves_and_histograms(calibrated_model_no_drug=calibratedModelNoDrug,
+                                            calibrated_model_with_drug=calibratedModelWithDrug)
 
 # print comparative outcomes
 Support.print_comparative_outcomes(calibrated_model_no_drug=calibratedModelNoDrug,
