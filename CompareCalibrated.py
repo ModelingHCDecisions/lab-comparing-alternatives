@@ -1,10 +1,11 @@
 import InputData as D
 import CalibrationClasses as Cls
 import SupportCalibrated as Support
+from definitions import CALIBRATION_ROOT_DIR
 
 # create a calibrated model for when drug is not available
 calibratedModelNoDrug = Cls.CalibratedModel(
-    csv_file_name='..\Lab_Calibration\CalibrationResults.csv')
+    csv_file_name=CALIBRATION_ROOT_DIR+'\CalibrationResults.csv')
 # simulate the calibrated model
 calibratedModelNoDrug.simulate(num_of_simulated_cohorts=D.NUM_SIM_COHORTS,
                                cohort_size=D.SIM_POP_SIZE,
@@ -12,7 +13,7 @@ calibratedModelNoDrug.simulate(num_of_simulated_cohorts=D.NUM_SIM_COHORTS,
 
 # create a calibrated model when drug is available
 calibratedModelWithDrug = Cls.CalibratedModel(
-    csv_file_name='..\Lab_Calibration\CalibrationResults.csv',
+    csv_file_name=CALIBRATION_ROOT_DIR+'\CalibrationResults.csv',
     drug_effectiveness_ratio=D.DRUG_EFFECT_RATIO)
 # simulate the calibrated model
 calibratedModelWithDrug.simulate(num_of_simulated_cohorts=D.NUM_SIM_COHORTS,
