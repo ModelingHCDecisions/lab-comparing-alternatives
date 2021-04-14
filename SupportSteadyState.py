@@ -73,8 +73,10 @@ def print_comparative_outcomes(cohort_no_drug, cohort_with_drug):
     """
 
     # create a difference statistics for the increase in survival time
-    increase_stat =
-
+    increase_stat = Stat.DifferenceStatIndp(
+        x=cohort_with_drug.cohortOutcomes.survivalTimes,
+        y_ref=cohort_no_drug.cohortOutcomes.survivalTimes
+    )
 
     # get mean and t-based confidence interval for the increase in survival time
     mean = increase_stat.get_mean()
