@@ -1,7 +1,7 @@
-import SimPy.Plots.SamplePaths as Path
-import SimPy.Plots.Histogram as Hist
-import SimPy.Statistics as Stat
 import InputData as D
+import SimPy.Plots.Histogram as Hist
+import SimPy.Plots.SamplePaths as Path
+import SimPy.Statistics as Stat
 
 
 def print_outcomes(simulated_cohort, strategy_name):

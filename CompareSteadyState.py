@@ -1,6 +1,6 @@
 import InputData as D
-import SurvivalModelClasses as Cls
 import SupportSteadyState as Support
+import SurvivalModelClasses as Cls
 
 # create a cohort of patients for when the drug is not available
 cohortNoDrug = Cls.Cohort(
