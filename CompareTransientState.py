@@ -13,7 +13,7 @@ multiCohortNoDrug.simulate(n_time_steps=D.TIME_STEPS)
 
 # create multiple cohorts for when the drug is available
 multiCohortWithDrug = Cls.MultiCohort(
-    ids=range(D.NUM_SIM_COHORTS, 2 * D.NUM_SIM_COHORTS),
+    ids= ,
         # [NUM_SIM_COHORTS, NUM_SIM_COHORTS+1, NUM_SIM_COHORTS+2, ...]
         # since we don't have a mechanism to pair the simulated patients in
         # cohorts with and without the drug, we chose a different random number seed
