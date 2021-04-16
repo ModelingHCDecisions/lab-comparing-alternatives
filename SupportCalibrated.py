@@ -66,11 +66,8 @@ def print_comparative_outcomes(calibrated_model_no_drug, calibrated_model_with_d
     :param calibrated_model_with_drug: calibrated model simulated when drug is available
     """
     # increase in survival time
-    increase_stat = Stat.DifferenceStatPaired(
-        name='Increase in mean survival time',
-        x=calibrated_model_with_drug.multiCohorts.multiCohortOutcomes.meanSurvivalTimes,
-        y_ref=calibrated_model_no_drug.multiCohorts.multiCohortOutcomes.meanSurvivalTimes
-    )
+    increase_stat =
+
     # mean and prediction interval
     mean = increase_stat.get_mean()
     pred_int = increase_stat.get_PI(alpha=D.ALPHA)
@@ -79,10 +76,8 @@ def print_comparative_outcomes(calibrated_model_no_drug, calibrated_model_with_d
           .format(1 - D.ALPHA, prec=0), mean, pred_int)
 
     # % increase in mean survival time
-    relative_diff_stat = Stat.RelativeDifferencePaired(
-        x=calibrated_model_with_drug.multiCohorts.multiCohortOutcomes,
-        y_ref=calibrated_model_no_drug.multiCohorts.multiCohortOutcomes
-    )
+    relative_diff_stat =
+
 
     # estimate and prediction interval
     mean = relative_diff_stat.get_mean()
