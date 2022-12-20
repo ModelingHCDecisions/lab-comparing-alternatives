@@ -1,7 +1,8 @@
 import InputData as D
-import SimPy.Plots.Histogram as Hist
-import SimPy.Plots.SamplePaths as Path
-import SimPy.Statistics as Stat
+
+import deampy.plots.histogram as hist
+import deampy.plots.sample_paths as path
+import deampy.statistics as stats
 
 
 def print_outcomes(simulated_cohort, strategy_name):
@@ -11,10 +12,10 @@ def print_outcomes(simulated_cohort, strategy_name):
     """
 
     # create a summary statistics
-    survival_time_stat = Stat.SummaryStat(name='Survival time statistics',
-                                          data=simulated_cohort.cohortOutcomes.survivalTimes)
+    survival_time_stat = stats.SummaryStat(name='Survival time statistics',
+                                           data=simulated_cohort.cohortOutcomes.survivalTimes)
 
-    # get mean and confidence confidence interval
+    # get mean and confidence interval
     mean = survival_time_stat.get_mean()
     conf_int = survival_time_stat.get_t_CI(alpha=D.ALPHA)
 
@@ -37,7 +38,7 @@ def draw_survival_curves_and_histograms(cohort_no_drug, cohort_with_drug):
     ]
 
     # graph survival curve
-    Path.plot_sample_paths(
+    path.plot_sample_paths(
         sample_paths=survival_curves,
         title='Survival curve',
         x_label='Simulation time step',
@@ -54,7 +55,7 @@ def draw_survival_curves_and_histograms(cohort_no_drug, cohort_with_drug):
     ]
 
     # graph histograms
-    Hist.plot_histograms(
+    hist.plot_histograms(
         data_sets=set_of_survival_times,
         title='Histogram of patient survival time',
         x_label='Survival time',
@@ -73,7 +74,7 @@ def print_comparative_outcomes(cohort_no_drug, cohort_with_drug):
     """
 
     # create a difference statistics for the increase in survival time
-    increase_stat = Stat.DifferenceStatIndp(
+    increase_stat = stats.DifferenceStatIndp(
         name='Increase in survival time',
         x=cohort_with_drug.cohortOutcomes.survivalTimes,
         y_ref=cohort_no_drug.cohortOutcomes.survivalTimes

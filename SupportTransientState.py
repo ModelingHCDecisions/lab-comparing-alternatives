@@ -1,7 +1,7 @@
-import InputData as D
-import SimPy.Plots.Histogram as Hist
-import SimPy.Plots.SamplePaths as Path
-import SimPy.Statistics as Stat
+import CompareInputData as D
+import deampy.plots.histogram as hist
+import deampy.plots.sample_paths as path
+import deampy.statistics as stats
 
 
 def print_outcomes(multi_cohort, strategy_name):
@@ -11,8 +11,8 @@ def print_outcomes(multi_cohort, strategy_name):
     """
 
     # create a summary statistics
-    survival_time_stat = Stat.SummaryStat(name='Survival time statistics',
-                                          data=multi_cohort.multiCohortOutcomes.meanSurvivalTimes)
+    survival_time_stat = stats.SummaryStat(name='Survival time statistics',
+                                           data=multi_cohort.multiCohortOutcomes.meanSurvivalTimes)
 
     # get mean and t-based confidence interval
     mean = survival_time_stat.get_mean()
@@ -24,8 +24,8 @@ def print_outcomes(multi_cohort, strategy_name):
           .format(1 - D.ALPHA, prec=0), mean, pred_int)
 
 
-def draw_survival_curves_and_histograms(multi_cohort_no_drug, multi_cohort_with_drug):
-    """ draws the histograms of average survival time
+def plot_survival_curves_and_histograms(multi_cohort_no_drug, multi_cohort_with_drug):
+    """ plot survival curves and the histograms of average survival time
     :param multi_cohort_no_drug: multiple cohorts simulated when drug is not available
     :param multi_cohort_with_drug: multiple cohorts simulated when drug is available
     """
@@ -37,7 +37,7 @@ def draw_survival_curves_and_histograms(multi_cohort_no_drug, multi_cohort_with_
     ]
 
     # graph survival curve
-    Path.plot_sets_of_sample_paths(
+    path.plot_sets_of_sample_paths(
         sets_of_sample_paths=survival_curves,
         title='Survival curve',
         x_label='Simulation time step',
@@ -54,7 +54,7 @@ def draw_survival_curves_and_histograms(multi_cohort_no_drug, multi_cohort_with_
     ]
 
     # graph histograms
-    Hist.plot_histograms(
+    hist.plot_histograms(
         data_sets=set_of_survival_times,
         title='Histogram of average patient survival time',
         x_label='Survival time',
@@ -74,7 +74,7 @@ def print_comparative_outcomes(multi_cohort_no_drug, multi_cohort_with_drug):
     """
 
     # increase in survival time
-    increase_stat = Stat.DifferenceStatIndp(
+    increase_stat = stats.DifferenceStatIndp(
         name='Increase in mean survival time',
         x=multi_cohort_with_drug.multiCohortOutcomes.meanSurvivalTimes,
         y_ref=multi_cohort_no_drug.multiCohortOutcomes.meanSurvivalTimes
@@ -87,7 +87,7 @@ def print_comparative_outcomes(multi_cohort_no_drug, multi_cohort_with_drug):
           .format(1 - D.ALPHA, prec=0), mean, pred_int)
 
     # % increase in mean survival time
-    relative_diff_stat = Stat.RelativeDifferenceIndp(
+    relative_diff_stat = stats.RelativeDifferenceIndp(
         name='% increase in mean survival time',
         x=multi_cohort_with_drug.multiCohortOutcomes.meanSurvivalTimes,
         y_ref=multi_cohort_no_drug.multiCohortOutcomes.meanSurvivalTimes

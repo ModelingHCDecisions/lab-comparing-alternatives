@@ -1,4 +1,4 @@
-import InputData as D
+import CompareInputData as D
 import MultiSurvivalModelClasses as Cls
 import SupportTransientState as Support
 
@@ -31,7 +31,7 @@ Support.print_outcomes(multi_cohort=multiCohortWithDrug,
                        strategy_name='When drug is available:')
 
 # draw histograms of average survival time
-Support.draw_survival_curves_and_histograms(multi_cohort_no_drug=multiCohortNoDrug,
+Support.plot_survival_curves_and_histograms(multi_cohort_no_drug=multiCohortNoDrug,
                                             multi_cohort_with_drug=multiCohortWithDrug)
 
 # print comparative outcomes
