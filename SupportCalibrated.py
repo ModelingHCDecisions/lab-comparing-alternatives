@@ -1,7 +1,8 @@
-import CompareInputData as D
 import deampy.plots.histogram as hist
 import deampy.plots.sample_paths as path
 import deampy.statistics as stats
+
+import CompareInputData as D
 
 
 def print_outcomes(calibrated_model, strategy_name):
@@ -37,7 +38,8 @@ def draw_survival_curves_and_histograms(calibrated_model_no_drug, calibrated_mod
         y_label='Number of alive patients',
         legends=['No Drug', 'With Drug'],
         color_codes=['blue', 'orange'],
-        transparency=0.25
+        transparency=0.25,
+        file_name='figs/calibrated/survival_curves.png'
     )
 
     # histograms of average survival times
@@ -56,7 +58,8 @@ def draw_survival_curves_and_histograms(calibrated_model_no_drug, calibrated_mod
         legends=['No Drug', 'With Drug'],
         color_codes=['blue', 'orange'],
         transparency=0.5,
-        x_range=[6, 20]
+        x_range=[6, 20],
+        file_name='figs/calibrated/survival_times.png'
     )
 
 

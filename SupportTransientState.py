@@ -1,7 +1,8 @@
-import CompareInputData as D
 import deampy.plots.histogram as hist
 import deampy.plots.sample_paths as path
 import deampy.statistics as stats
+
+import CompareInputData as D
 
 
 def print_outcomes(multi_cohort, strategy_name):
@@ -44,7 +45,8 @@ def plot_survival_curves_and_histograms(multi_cohort_no_drug, multi_cohort_with_
         y_label='Number of alive patients',
         legends=['No Drug', 'With Drug'],
         color_codes=['blue', 'orange'],
-        transparency=0.25
+        transparency=0.25,
+        file_name='figs/transient_state/survival_curves.png'
     )
 
     # histograms of average survival times
@@ -64,6 +66,7 @@ def plot_survival_curves_and_histograms(multi_cohort_no_drug, multi_cohort_with_
         color_codes=['blue', 'orange'],
         transparency=0.5,
         x_range=[6, 20],
+        file_name='figs/transient_state/survival_times.png'
     )
 
 
