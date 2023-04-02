@@ -1,7 +1,7 @@
-import InputData as D
-import SimPy.Plots.Histogram as Hist
-import SimPy.Plots.SamplePaths as Path
-import SimPy.Statistics as Stat
+import deampy.plots.histogram as hist
+import deampy.plots.sample_paths as path
+
+import CompareInputData as D
 
 
 def print_outcomes(calibrated_model, strategy_name):
@@ -30,14 +30,15 @@ def draw_survival_curves_and_histograms(calibrated_model_no_drug, calibrated_mod
     ]
 
     # graph survival curve
-    Path.plot_sets_of_sample_paths(
+    path.plot_sets_of_sample_paths(
         sets_of_sample_paths=survival_curves,
         title='Survival curve',
         x_label='Simulation time step',
         y_label='Number of alive patients',
         legends=['No Drug', 'With Drug'],
         color_codes=['blue', 'orange'],
-        transparency=0.25
+        transparency=0.25,
+        file_name='figs/calibrated/survival_curves.png'
     )
 
     # histograms of average survival times
@@ -47,7 +48,7 @@ def draw_survival_curves_and_histograms(calibrated_model_no_drug, calibrated_mod
     ]
 
     # graph histograms
-    Hist.plot_histograms(
+    hist.plot_histograms(
         data_sets=set_of_survival_times,
         title='Histogram of average patient survival time',
         x_label='Survival time',
@@ -56,7 +57,8 @@ def draw_survival_curves_and_histograms(calibrated_model_no_drug, calibrated_mod
         legends=['No Drug', 'With Drug'],
         color_codes=['blue', 'orange'],
         transparency=0.5,
-        x_range=[6, 20]
+        x_range=[6, 20],
+        file_name='figs/calibrated/survival_times.png'
     )
 
 
