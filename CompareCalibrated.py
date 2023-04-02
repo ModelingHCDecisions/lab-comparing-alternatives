@@ -1,7 +1,7 @@
-import InputData as D
 import CalibrationClasses as Cls
+import CompareInputData as D
 import SupportCalibrated as Support
-from definitions import CALIBRATION_ROOT_DIR
+from CalibrationDefinitions import CALIBRATION_ROOT_DIR
 
 # create a calibrated model for when drug is not available
 calibratedModelNoDrug = Cls.CalibratedModel(
@@ -16,10 +16,11 @@ calibratedModelWithDrug = Cls.CalibratedModel(
     csv_file_name=CALIBRATION_ROOT_DIR+'\CalibrationResults.csv',
     drug_effectiveness_ratio=D.DRUG_EFFECT_RATIO)
 # simulate the calibrated model
+initial_seed =
 calibratedModelWithDrug.simulate(num_of_simulated_cohorts=D.NUM_SIM_COHORTS,
                                  cohort_size=D.SIM_POP_SIZE,
                                  time_steps=D.TIME_STEPS,
-                                 cohort_ids= )
+                                 cohort_ids=)
 
 # report mean and projection interval of expected survival time
 Support.print_outcomes(calibrated_model=calibratedModelNoDrug,
