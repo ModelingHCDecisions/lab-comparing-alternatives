@@ -1,6 +1,6 @@
-import InputData as D
+import CompareInputData as D
+import SupportConfidenceInterval as Support
 import SurvivalModelClasses as Cls
-import SupportSteadyState as Support
 
 # create a cohort of patients for when the drug is not available
 cohortNoDrug = Cls.Cohort(
@@ -14,7 +14,7 @@ cohortNoDrug.simulate(n_time_steps=D.TIME_STEPS)
 cohortWithDrug = Cls.Cohort(
     id= ,   # since we don't have a mechanism to pair the simulated patients in
             # cohorts with and without the drug, we chose a different random number seed
-            # for these two cohorts so that they remain independent from each other.
+            # for these two cohorts so that they remain independent of each other.
     pop_size=D.SIM_POP_SIZE,
     mortality_prob=D.MORTALITY_PROB * D.DRUG_EFFECT_RATIO)
 # simulate the cohort

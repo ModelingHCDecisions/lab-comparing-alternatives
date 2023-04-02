@@ -1,7 +1,8 @@
-import InputData as D
-import SimPy.Plots.Histogram as Hist
-import SimPy.Plots.SamplePaths as Path
-import SimPy.Statistics as Stat
+import deampy.plots.histogram as hist
+import deampy.plots.sample_paths as path
+import deampy.statistics as stats
+
+import CompareInputData as D
 
 
 def print_outcomes(simulated_cohort, strategy_name):
@@ -11,7 +12,7 @@ def print_outcomes(simulated_cohort, strategy_name):
     """
 
     # create a summary statistics
-    survival_time_stat = Stat.SummaryStat(name='Survival time statistics',
+    survival_time_stat = stats.SummaryStat(name='Survival time statistics',
                                           data=simulated_cohort.cohortOutcomes.survivalTimes)
 
     # get mean and confidence confidence interval
@@ -37,14 +38,15 @@ def draw_survival_curves_and_histograms(cohort_no_drug, cohort_with_drug):
     ]
 
     # graph survival curve
-    Path.plot_sample_paths(
+    path.plot_sample_paths(
         sample_paths=survival_curves,
         title='Survival curve',
         x_label='Simulation time step',
         y_label='Number of alive patients',
         legends=['No Drug', 'With Drug'],
         color_codes=['blue', 'orange'],
-        transparency=0.5
+        transparency=0.5,
+        file_name='figs/steady_state/survival_curve.png'
     )
 
     # histograms of survival times
@@ -54,7 +56,7 @@ def draw_survival_curves_and_histograms(cohort_no_drug, cohort_with_drug):
     ]
 
     # graph histograms
-    Hist.plot_histograms(
+    hist.plot_histograms(
         data_sets=set_of_survival_times,
         title='Histogram of patient survival time',
         x_label='Survival time',
@@ -62,7 +64,8 @@ def draw_survival_curves_and_histograms(cohort_no_drug, cohort_with_drug):
         bin_width=2,
         legends=['No Drug', 'With Drug'],
         color_codes=['blue', 'orange'],
-        transparency=0.5
+        transparency=0.5,
+        file_name='figs/steady_state/survival_times.png'
     )
 
 

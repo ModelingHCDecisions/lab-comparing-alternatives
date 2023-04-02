@@ -1,5 +1,6 @@
 import deampy.plots.histogram as hist
 import deampy.plots.sample_paths as path
+import deampy.statistics as stats
 
 import CompareInputData as D
 

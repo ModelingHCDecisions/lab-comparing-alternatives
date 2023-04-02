@@ -1,6 +1,6 @@
-import InputData as D
+import CompareInputData as D
 import MultiSurvivalModelClasses as Cls
-import SupportTransientState as Support
+import SupportPredictionInterval as Support
 
 # create multiple cohorts for when the drug is not available
 multiCohortNoDrug = Cls.MultiCohort(
@@ -17,7 +17,7 @@ multiCohortWithDrug = Cls.MultiCohort(
         # [NUM_SIM_COHORTS, NUM_SIM_COHORTS+1, NUM_SIM_COHORTS+2, ...]
         # since we don't have a mechanism to pair the simulated patients in
         # cohorts with and without the drug, we chose a different random number seed
-        # for these two cohorts so that they remain independent from each other.
+        # for these two cohorts so that they remain independent of each other.
     pop_sizes=[D.REAL_POP_SIZE] * D.NUM_SIM_COHORTS,  # [REAL_POP_SIZE, REAL_POP_SIZE, ..., REAL_POP_SIZE]
     mortality_probs=[D.MORTALITY_PROB * D.DRUG_EFFECT_RATIO] * D.NUM_SIM_COHORTS
 )
