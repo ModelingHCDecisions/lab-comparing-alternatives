@@ -1,5 +1,5 @@
 import CompareInputData as D
-import SupportSteadyState as Support
+import SupportConfidenceInterval as Support
 import SurvivalModelClasses as Cls
 
 # create a cohort of patients for when the drug is not available

@@ -1,6 +1,6 @@
 import CompareInputData as D
 import MultiSurvivalModelClasses as Cls
-import SupportTransientState as Support
+import SupportPredictionInterval as Support
 
 # create multiple cohorts for when the drug is not available
 multiCohortNoDrug = Cls.MultiCohort(
