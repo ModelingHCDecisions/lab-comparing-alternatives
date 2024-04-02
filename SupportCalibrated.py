@@ -1,8 +1,9 @@
+import numpy as np
+
+import CompareInputData as D
 import deampy.plots.histogram as hist
 import deampy.plots.sample_paths as path
 import deampy.statistics as stats
-
-import CompareInputData as D
 
 
 def print_outcomes(calibrated_model, strategy_name):
