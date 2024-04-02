@@ -1,8 +1,9 @@
+import numpy as np
+
+import CompareInputData as D
 import deampy.plots.histogram as hist
 import deampy.plots.sample_paths as path
 import deampy.statistics as stats
-
-import CompareInputData as D
 
 
 def print_outcomes(calibrated_model, strategy_name):
@@ -18,7 +19,7 @@ def print_outcomes(calibrated_model, strategy_name):
           calibrated_model.get_mean_survival_time_proj_interval(alpha=D.ALPHA))
 
 
-def draw_survival_curves_and_histograms(calibrated_model_no_drug, calibrated_model_with_drug):
+def plot_survival_curves_and_histograms(calibrated_model_no_drug, calibrated_model_with_drug):
     """ draws the histograms of average survival time
     :param calibrated_model_no_drug: calibrated model simulated when drug is not available
     :param calibrated_model_with_drug: calibrated model simulated when drug is available
@@ -92,4 +93,4 @@ def print_comparative_outcomes(calibrated_model_no_drug, calibrated_model_with_d
     pred_int = relative_diff_stat.get_PI(alpha=D.ALPHA)
 
     print("Expected percentage increase in mean survival time and {:.{prec}%} confidence interval:"
-          .format(1 - D.ALPHA, prec=0), mean, pred_int)
+          .format(1 - D.ALPHA, prec=0), mean*100, np.multiply(pred_int, 100))

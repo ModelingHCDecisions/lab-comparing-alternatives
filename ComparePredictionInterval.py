@@ -19,7 +19,7 @@ multiCohortWithDrug = Cls.MultiCohort(
         # cohorts with and without the drug, we chose a different random number seed
         # for these two cohorts so that they remain independent of each other.
     pop_sizes=[D.REAL_POP_SIZE] * D.NUM_SIM_COHORTS,  # [REAL_POP_SIZE, REAL_POP_SIZE, ..., REAL_POP_SIZE]
-    mortality_probs=[D.MORTALITY_PROB * D.DRUG_EFFECT_RATIO] * D.NUM_SIM_COHORTS
+    mortality_probs=[D.MORTALITY_PROB * D.TREATMENT_RR] * D.NUM_SIM_COHORTS
 )
 # simulate all cohorts
 multiCohortWithDrug.simulate(n_time_steps=D.TIME_STEPS)

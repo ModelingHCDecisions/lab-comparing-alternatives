@@ -1,8 +1,9 @@
+import numpy as np
+
+import CompareInputData as D
 import deampy.plots.histogram as hist
 import deampy.plots.sample_paths as path
 import deampy.statistics as stats
-
-import CompareInputData as D
 
 
 def print_outcomes(multi_cohort, strategy_name):
@@ -46,7 +47,7 @@ def plot_survival_curves_and_histograms(multi_cohort_no_drug, multi_cohort_with_
         legends=['No Drug', 'With Drug'],
         color_codes=['blue', 'orange'],
         transparency=0.25,
-        file_name='figs/transient_state/survival_curves.png'
+        file_name='figs/many_cohorts/survival_curves.png'
     )
 
     # histograms of average survival times
@@ -66,7 +67,7 @@ def plot_survival_curves_and_histograms(multi_cohort_no_drug, multi_cohort_with_
         color_codes=['blue', 'orange'],
         transparency=0.5,
         x_range=[6, 20],
-        file_name='figs/transient_state/survival_times.png'
+        file_name='figs/many_cohorts/survival_times.png'
     )
 
 
@@ -100,4 +101,4 @@ def print_comparative_outcomes(multi_cohort_no_drug, multi_cohort_with_drug):
     pred_int = relative_diff_stat.get_PI(alpha=D.ALPHA)
 
     print("Expected percentage increase in mean survival time and {:.{prec}%} confidence interval:"
-          .format(1 - D.ALPHA, prec=0), mean, pred_int)
+          .format(1 - D.ALPHA, prec=0), mean*100, np.multiply(pred_int, 100))

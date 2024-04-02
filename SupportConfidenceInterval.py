@@ -1,8 +1,9 @@
+import numpy as np
+
+import CompareInputData as D
 import deampy.plots.histogram as hist
 import deampy.plots.sample_paths as path
 import deampy.statistics as stats
-
-import CompareInputData as D
 
 
 def print_outcomes(simulated_cohort, strategy_name):
@@ -25,7 +26,7 @@ def print_outcomes(simulated_cohort, strategy_name):
           .format(1 - D.ALPHA, prec=0), mean, conf_int)
 
 
-def draw_survival_curves_and_histograms(cohort_no_drug, cohort_with_drug):
+def plor_survival_curves_and_histograms(cohort_no_drug, cohort_with_drug):
     """ draws the survival curves and the histograms of survival time
     :param cohort_no_drug: a cohort simulated when drug is not available
     :param cohort_with_drug: a cohort simulated when drug is available
@@ -46,7 +47,7 @@ def draw_survival_curves_and_histograms(cohort_no_drug, cohort_with_drug):
         legends=['No Drug', 'With Drug'],
         color_codes=['blue', 'orange'],
         transparency=0.5,
-        file_name='figs/steady_state/survival_curve.png'
+        file_name='figs/one_cohort/survival_curve.png'
     )
 
     # histograms of survival times
@@ -65,7 +66,7 @@ def draw_survival_curves_and_histograms(cohort_no_drug, cohort_with_drug):
         legends=['No Drug', 'With Drug'],
         color_codes=['blue', 'orange'],
         transparency=0.5,
-        file_name='figs/steady_state/survival_times.png'
+        file_name='figs/one_cohort/survival_times.png'
     )
 
 
@@ -86,5 +87,18 @@ def print_comparative_outcomes(cohort_no_drug, cohort_with_drug):
     mean = increase_stat.get_mean()
     conf_int = increase_stat.get_t_CI(alpha=D.ALPHA)
 
-    print("Average increase in survival time (years) and {:.{prec}%} confidence interval:"
+    print("Increase in survival time (years) and {:.{prec}%} confidence interval:"
           .format(1 - D.ALPHA, prec=0), mean, conf_int)
+
+    # % increase in mean survival time
+    relative_diff_stat = stats.RelativeDiffOfMeansIndp(
+        name='% increase in mean survival time',
+        x=cohort_with_drug.cohortOutcomes.survivalTimes,
+        y_ref=cohort_no_drug.cohortOutcomes.survivalTimes
+    )
+    # estimate and prediction interval
+    mean = relative_diff_stat.get_mean()
+    pred_int = relative_diff_stat.get_bootstrap_CI(alpha=D.ALPHA, num_samples=1000)
+
+    print("Percentage increase in mean survival time and {:.{prec}%} confidence interval:"
+          .format(1 - D.ALPHA, prec=0), mean*100, np.multiply(pred_int, 100))

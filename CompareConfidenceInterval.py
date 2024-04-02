@@ -16,7 +16,7 @@ cohortWithDrug = Cls.Cohort(
             # cohorts with and without the drug, we chose a different random number seed
             # for these two cohorts so that they remain independent of each other.
     pop_size=D.SIM_POP_SIZE,
-    mortality_prob=D.MORTALITY_PROB * D.DRUG_EFFECT_RATIO)
+    mortality_prob=D.MORTALITY_PROB * D.TREATMENT_RR)
 # simulate the cohort
 cohortWithDrug.simulate(n_time_steps=D.TIME_STEPS)
 
@@ -27,7 +27,7 @@ Support.print_outcomes(simulated_cohort=cohortWithDrug,
                        strategy_name='When drug available:')
 
 # draw survival curves and histograms
-Support.draw_survival_curves_and_histograms(cohort_no_drug=cohortNoDrug,
+Support.plor_survival_curves_and_histograms(cohort_no_drug=cohortNoDrug,
                                             cohort_with_drug=cohortWithDrug)
 
 # print comparative outcomes

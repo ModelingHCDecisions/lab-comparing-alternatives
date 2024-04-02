@@ -1,6 +1,6 @@
 
 MORTALITY_PROB = 0.1        # annual probability of mortality
-DRUG_EFFECT_RATIO = 0.75    # drug effectiveness:
+TREATMENT_RR = 0.75         # relative risk (RR) of mortality under treatment:
                             # ratio of the annual mortality probability when using the drug
                             # to when not using the drug.
 TIME_STEPS = 1000    # simulation length
