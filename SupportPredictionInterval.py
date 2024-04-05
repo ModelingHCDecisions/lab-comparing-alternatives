@@ -100,5 +100,5 @@ def print_comparative_outcomes(multi_cohort_no_drug, multi_cohort_with_drug):
     mean = relative_diff_stat.get_mean()
     pred_int = relative_diff_stat.get_PI(alpha=D.ALPHA)
 
-    print("Expected percentage increase in mean survival time and {:.{prec}%} confidence interval:"
+    print("Expected percentage increase in mean survival time and {:.{prec}%} prediction interval:"
           .format(1 - D.ALPHA, prec=0), mean*100, np.multiply(pred_int, 100))
