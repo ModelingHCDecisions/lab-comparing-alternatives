@@ -9,7 +9,7 @@ multiCohortNoDrug = Cls.MultiCohort(
     mortality_probs=[D.MORTALITY_PROB] * D.NUM_SIM_COHORTS  # [p, p, ...]
 )
 # simulate all cohorts
-multiCohortNoDrug.simulate(n_time_steps=D.TIME_STEPS)
+multiCohortNoDrug.simulate(seeds=range(D.NUM_SIM_COHORTS), n_time_steps=D.TIME_STEPS)
 
 # create multiple cohorts for when the drug is available
 multiCohortWithDrug = Cls.MultiCohort(
@@ -22,7 +22,7 @@ multiCohortWithDrug = Cls.MultiCohort(
     mortality_probs=[D.MORTALITY_PROB * D.TREATMENT_RR] * D.NUM_SIM_COHORTS
 )
 # simulate all cohorts
-multiCohortWithDrug.simulate(n_time_steps=D.TIME_STEPS)
+multiCohortWithDrug.simulate(seeds=range(D.NUM_SIM_COHORTS, 2 * D.NUM_SIM_COHORTS), n_time_steps=D.TIME_STEPS)
 
 # print outcomes of each cohort
 Support.print_outcomes(multi_cohort=multiCohortNoDrug,

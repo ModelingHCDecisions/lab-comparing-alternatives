@@ -1,7 +1,9 @@
-import CalibrationClasses as Cls
+import calib_src.classes as Cls
 import CompareInputData as D
 import SupportCalibrated as Support
-from CalibrationDefinitions import CALIBRATION_ROOT_DIR
+from calib_defs import CALIBRATION_ROOT_DIR
+
+#TODO: to be updated
 
 # create a calibrated model for when drug is not available
 calibratedModelNoDrug = Cls.CalibratedModel(

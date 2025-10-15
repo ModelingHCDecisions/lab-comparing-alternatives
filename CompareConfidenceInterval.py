@@ -8,7 +8,7 @@ cohortNoDrug = Cls.Cohort(
     pop_size=D.SIM_POP_SIZE,
     mortality_prob=D.MORTALITY_PROB)
 # simulate the cohort
-cohortNoDrug.simulate(n_time_steps=D.TIME_STEPS)
+cohortNoDrug.simulate(seed=1, n_time_steps=D.TIME_STEPS)
 
 # create a cohort of patients for when the drug is available
 cohortWithDrug = Cls.Cohort(
@@ -18,7 +18,7 @@ cohortWithDrug = Cls.Cohort(
     pop_size=D.SIM_POP_SIZE,
     mortality_prob=D.MORTALITY_PROB * D.TREATMENT_RR)
 # simulate the cohort
-cohortWithDrug.simulate(n_time_steps=D.TIME_STEPS)
+cohortWithDrug.simulate(seed=2, n_time_steps=D.TIME_STEPS)
 
 # print outcomes of each cohort
 Support.print_outcomes(simulated_cohort=cohortNoDrug,
